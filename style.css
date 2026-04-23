@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 核心：NewJeans 风格 —— 超干净、留白大、细线条、淡蓝/米白 */
+body {
+  background-color: #f7f8fa;
+  color: #1a1a1a;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  letter-spacing: 0.3px;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 100px 24px 120px;
+}
+
+/* 顶部 */
+.header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+.header .name {
+  font-size: 26px;
+  font-weight: 300;
+  letter-spacing: 8px;
+  margin-bottom: 12px;
+}
+.header .line {
+  width: 40px;
+  height: 1px;
+  background-color: #cdd6e4;
+  margin: 0 auto 12px;
+}
+.header .desc {
+  font-size: 12px;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+/* 模块 */
+.section {
+  margin-bottom: 70px;
+}
+.section .title {
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: #666;
+  margin-bottom: 28px;
+  text-transform: uppercase;
+}
+
+/* 文字 */
+.section .text {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.9;
+}
+
+/* 经历 */
+.exp .item {
+  margin-bottom: 24px;
+}
+.exp .date {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 4px;
+}
+.exp .pos {
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+.exp .detail {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.8;
+}
+
+/* 作品展示卡片（新加）*/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px 16px;
+  border: 1px solid #e6eaf0;
+}
+.card-tag {
+  font-size: 10px;
+  color: #889cb4;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+.card-title {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+.card-desc {
+  font-size: 11px;
+  color: #777;
+  line-height: 1.6;
+}
+
+/* 教育 */
+.edu .item {
+  margin-bottom: 20px;
+}
+.edu .date {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 4px;
+}
+.edu .pos {
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+.edu .detail {
+  font-size: 13px;
+  color: #555;
+}
+
+/* 联系 */
+.contact .text {
+  font-size: 13px;
+  color: #444;
+}
