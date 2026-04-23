@@ -1,137 +1,544 @@
+/* ============================================
+   NewJeans Album Style - Minimal & Gentle
+   ============================================ */
+
+/* CSS Variables for NewJeans Color Palette */
+:root {
+  --color-bg: #f7f8fa;           /* Light beige background */
+  --color-text-primary: #1a1a1a; /* Dark gray for main text */
+  --color-text-secondary: #666;  /* Medium gray for subtitles */
+  --color-text-tertiary: #888;   /* Light gray for details */
+  --color-accent: #cdd6e4;       /* Soft blue-gray for lines & accents */
+  --color-card-bg: #ffffff;      /* Pure white for cards */
+  --color-card-border: #e6eaf0;  /* Subtle border */
+  --color-card-shadow: rgba(0, 0, 0, 0.02);
+  --color-hover: rgba(205, 214, 228, 0.15); /* Hover effect */
+
+  /* Typography */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 80px;
+  --space-5xl: 120px;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* ============================================
+   Reset & Base Styles
+   ============================================ */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* 核心：NewJeans 风格 —— 超干净、留白大、细线条、淡蓝/米白 */
-body {
-  background-color: #f7f8fa;
-  color: #1a1a1a;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-weight: 300;
-  line-height: 1.7;
-  letter-spacing: 0.3px;
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-light);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   Container
+   ============================================ */
 .container {
   max-width: 720px;
   margin: 0 auto;
-  padding: 100px 24px 120px;
+  padding: var(--space-5xl) var(--space-xl) var(--space-4xl);
 }
 
-/* 顶部 */
+/* ============================================
+   Header
+   ============================================ */
 .header {
   text-align: center;
-  margin-bottom: 80px;
-}
-.header .name {
-  font-size: 26px;
-  font-weight: 300;
-  letter-spacing: 8px;
-  margin-bottom: 12px;
-}
-.header .line {
-  width: 40px;
-  height: 1px;
-  background-color: #cdd6e4;
-  margin: 0 auto 12px;
-}
-.header .desc {
-  font-size: 12px;
-  color: #888;
-  letter-spacing: 1px;
+  margin-bottom: var(--space-4xl);
 }
 
-/* 模块 */
-.section {
-  margin-bottom: 70px;
-}
-.section .title {
-  font-size: 12px;
-  letter-spacing: 4px;
-  color: #666;
-  margin-bottom: 28px;
+.name {
+  font-size: 28px;
+  font-weight: var(--font-weight-light);
+  letter-spacing: 0.3em;
+  margin-bottom: var(--space-md);
+  color: var(--color-text-primary);
   text-transform: uppercase;
 }
 
-/* 文字 */
-.section .text {
-  font-size: 14px;
-  color: #333;
-  line-height: 1.9;
+.line {
+  width: 48px;
+  height: 1px;
+  background-color: var(--color-accent);
+  margin: 0 auto var(--space-md);
+  transition: width var(--transition-normal);
 }
 
-/* 经历 */
-.exp .item {
-  margin-bottom: 24px;
+.header:hover .line {
+  width: 64px;
 }
-.exp .date {
+
+.tagline {
   font-size: 12px;
-  color: #999;
-  margin-bottom: 4px;
-}
-.exp .pos {
-  font-size: 15px;
-  font-weight: 400;
-  margin-bottom: 6px;
-}
-.exp .detail {
-  font-size: 13px;
-  color: #555;
-  line-height: 1.8;
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
-/* 作品展示卡片（新加）*/
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+/* ============================================
+   Section Common Styles
+   ============================================ */
+.section {
+  margin-bottom: var(--space-4xl);
+  opacity: 0;
+  animation: fadeInUp 0.8s var(--transition-normal) forwards;
 }
-.card {
-  background-color: #ffffff;
-  border-radius: 12px;
-  padding: 20px 16px;
-  border: 1px solid #e6eaf0;
+
+.section:nth-child(2) { animation-delay: 0.1s; }
+.section:nth-child(3) { animation-delay: 0.2s; }
+.section:nth-child(4) { animation-delay: 0.3s; }
+.section:nth-child(5) { animation-delay: 0.4s; }
+.section:nth-child(6) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.card-tag {
-  font-size: 10px;
-  color: #889cb4;
-  margin-bottom: 8px;
-  letter-spacing: 1px;
-}
-.card-title {
-  font-size: 14px;
-  font-weight: 400;
-  margin-bottom: 6px;
-}
-.card-desc {
+
+.section-title {
   font-size: 11px;
-  color: #777;
+  letter-spacing: 0.3em;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-xl);
+  text-transform: uppercase;
+  font-weight: var(--font-weight-regular);
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 24px;
+  height: 1px;
+  background-color: var(--color-accent);
+}
+
+/* ============================================
+   Hello Section
+   ============================================ */
+.hello-content {
+  max-width: 600px;
+}
+
+.intro-text {
+  font-size: 16px;
+  color: var(--color-text-primary);
+  line-height: 1.9;
+  margin-bottom: var(--space-md);
+}
+
+/* ============================================
+   Work Section
+   ============================================ */
+.work-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.work-item {
+  position: relative;
+  padding-left: var(--space-xl);
+}
+
+.work-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  transition: transform var(--transition-normal);
+}
+
+.work-item:hover::before {
+  transform: scale(1.2);
+}
+
+.work-header {
+  margin-bottom: var(--space-md);
+}
+
+.work-date {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-xs);
+  letter-spacing: 0.05em;
+}
+
+.work-company {
+  font-size: 15px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.work-position {
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+}
+
+.work-details {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.work-details li {
+  position: relative;
+  padding-left: var(--space-lg);
+  margin-bottom: var(--space-sm);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+.work-details li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+/* ============================================
+   Projects Section
+   ============================================ */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-lg);
+}
+
+.project-card {
+  background-color: var(--color-card-bg);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl) var(--space-lg);
+  border: 1px solid var(--color-card-border);
+  box-shadow: 0 4px 12px var(--color-card-shadow);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-normal);
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.project-card:hover::before {
+  transform: scaleX(1);
+}
+
+.project-category {
+  font-size: 10px;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-sm);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.project-name {
+  font-size: 15px;
+  font-weight: var(--font-weight-regular);
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-primary);
+}
+
+.project-desc {
+  font-size: 12px;
+  color: var(--color-text-secondary);
   line-height: 1.6;
 }
 
-/* 教育 */
-.edu .item {
-  margin-bottom: 20px;
-}
-.edu .date {
-  font-size: 12px;
-  color: #999;
-  margin-bottom: 4px;
-}
-.edu .pos {
-  font-size: 15px;
-  font-weight: 400;
-  margin-bottom: 4px;
-}
-.edu .detail {
-  font-size: 13px;
-  color: #555;
+/* ============================================
+   Education Section
+   ============================================ */
+.education-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
 }
 
-/* 联系 */
-.contact .text {
-  font-size: 13px;
-  color: #444;
+.education-item {
+  position: relative;
+  padding-left: var(--space-xl);
+}
+
+.education-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+}
+
+.edu-header {
+  margin-bottom: var(--space-xs);
+}
+
+.edu-date {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-xs);
+  letter-spacing: 0.05em;
+}
+
+.edu-school {
+  font-size: 15px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.edu-details {
+  margin-top: var(--space-xs);
+}
+
+.edu-degree {
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+}
+
+/* ============================================
+   Contact Section
+   ============================================ */
+.contact-content {
+  max-width: 400px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.contact-item:hover {
+  color: var(--color-text-primary);
+}
+
+.contact-item i {
+  width: 20px;
+  text-align: center;
+  color: var(--color-accent);
+  font-size: 16px;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+.footer {
+  margin-top: var(--space-4xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--color-card-border);
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (max-width: 768px) {
+  .container {
+    padding: var(--space-3xl) var(--space-lg) var(--space-3xl);
+  }
+
+  .header {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .name {
+    font-size: 24px;
+    letter-spacing: 0.2em;
+  }
+
+  .section {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .work-item,
+  .education-item {
+    padding-left: var(--space-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: var(--space-2xl) var(--space-md) var(--space-2xl);
+  }
+
+  .name {
+    font-size: 20px;
+    letter-spacing: 0.15em;
+  }
+
+  .tagline {
+    font-size: 11px;
+  }
+
+  .section-title {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+  }
+
+  .intro-text {
+    font-size: 15px;
+  }
+
+  .work-company,
+  .edu-school {
+    font-size: 14px;
+  }
+
+  .work-details li,
+  .edu-degree,
+  .contact-item {
+    font-size: 13px;
+  }
+}
+
+/* ============================================
+   Fine Details & Enhancements
+   ============================================ */
+::selection {
+  background-color: var(--color-hover);
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: var(--radius-sm);
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-tertiary);
+}
+
+/* Smooth hover effects */
+.work-item,
+.education-item,
+.project-card,
+.contact-item {
+  transition: all var(--transition-fast);
+}
+
+/* Print styles */
+@media print {
+  .container {
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .section {
+    break-inside: avoid;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }
